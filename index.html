@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curise Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+
+        <div class="booking-content">
+            <h1>Cruise Queen</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book./p>
+        </div>
+
+
+        <div id="book_now" class="booking-form">
+            <h3>Book Ocean Time</h3>
+            <div class="input-group">
+                <label for="">Your Name * </label>
+                <input id="your_name" class="inp-style" type="text" name="" placeholder="Prodip M">
+            </div>
+            <div class="input-group">
+                <label for="">Travel From * </label>
+                <input id="travel_from" class="inp-style" type="text" name="" placeholder="Barisal, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Travel To * </label>
+                <input id="travel_to" class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="ticket_quantity_first" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="updateTicketQuantity(1, 'first')">+</button>
+                    <button onclick="updateTicketQuantity(-1, 'first')">-</button>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="ticket_quantity_economy" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="updateTicketQuantity(1, 'economy')">+</button>
+                    <button onclick="updateTicketQuantity(-1, 'economy')">-</button>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="sub_total">00</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="vat">00</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="grand_total">00</span></p>
+                    </div>
+                </div>
+            </div>
+            <button onclick="bookNow()" class="btn-style">Book Now</button>
+
+            <p style="color: red; text-align: center; padding-top: 10px;" id="error_message"></p>
+        </div>
+
+        <div id="book_again" style="display: none;" class="booking-form">
+            <h3 style="text-align: center; background-color: #0008fd; padding: 16px; color: #fff; border-radius: 8px;" >Booking Successful!!</h3>
+            <h4 style="text-align: center;" >Hi <span id="coustomer_name" style="text-transform: uppercase; font-weight: bold; color: red;"> Prodip </span> , you have successfully booked your ticket.</h4>
+            
+
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Travel</p>
+                    </div>
+                    <div class="right">
+                        <p><span id="coustomer_travel_from"> Dhaka </span> to <span id="coustomer_travel_to"> Barisal </span></p>
+                    </div>
+                </div>
+                <div class="amount">
+                    <div class="left">
+                        <p>Tickets</p>
+                    </div>
+                    <div style="text-align: right;" class="right">
+                        <p>First Class ( <span id="coustomer_ticket_first">5</span> )</p>
+                        <p>Economy (<span id="coustomer_ticket_economy">0</span>)</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="coustomer_sub_total">00</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="coustomer_vat">00</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Grand Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="coustomer_grand_total">00</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <button onclick="bookAgain()" class="btn-style">Return to Booking</button>
+        </div>
+
+
+    </main>
+
+    <!--Thank You-->
+    <script src="script.js"></script>
+</body>
+
+</html>
